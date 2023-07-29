@@ -1,4 +1,3 @@
-
 set background=dark
 
 highlight clear
@@ -15,27 +14,33 @@ let s:lacandon = {}
 let s:lacandon.pureWhite = ['#ffffff', 15]
 let s:lacandon.pureBlack = ['#000000', 16]
 
-let s:lacandon.white = ['#f7ecd5', 230]
+let s:lacandon.white = ['#c6ff8a', 230]
 let s:lacandon.black = ['#040b10', 0]
 
-let s:fg = 'white'
-let s:bg = 'black'
+let s:fg = 'pureWhite'
+let s:bg = 'pureBlack'
 
-let s:lacandon.lightGreen = ['#90ee90', 108]
-let s:lacandon.green = ['#50fa7b', 0]
-let s:lacandon.darkGreen = ['#2c8160', 72]
+" Green
+let s:lacandon.alienParasite = ['#67fe37', 119]
+let s:lacandon.mountainMeadow = ['#1dad5e', 72]
 
-let s:lacandon.lightBlue = ['#70acaa', 109]
+" Blue 
+let s:lacandon.turquoisePanic = ['#29cbbe', 80]
+let s:lacandon.genoa = ['#166b60', 30]
 
-let s:lacandon.yellowGreen = ['#d3d04f', 186]
+" Yellow
+let s:lacandon.coniferBlossom = ['#ffdb47', 221]
 
-let s:lacandon.red = ['#ff6d60', 0]
+" Orange
+let s:lacandon.carrot = ['#fc7445', 209]
 
-let s:lacandon.grey = ['#232b2b', 59]
-let s:lacandon.lightGrey = ['#9da9a0', 145]
+" Grey
+let s:lacandon.tundora = ['#404040', 237]
+
+" Black
+let s:lacandon.chaosBlack = ['#101010', 233]
 
 " }}}
-
 " Highlighting Function {{{
 function! s:HL(group, fg, ...)
     " Arguments: group, guifg, guibg, gui, guisp
@@ -65,51 +70,97 @@ function! s:HL(group, fg, ...)
     execute hiFunction
 endfunction
 " }}}
-
 " Colour scheme {{{
+
+" UI {{{
 
 call s:HL('Normal', s:fg, s:bg, 'bold')
 
-call s:HL('Folded', 'lightGreen', s:bg, 'none')
+call s:HL('Folded', 'tundora', s:bg, 'none')
 
-call s:HL('CursorLine', '', 'grey', 'none')
-call s:HL('CursorColumn', '', 'grey')
-call s:HL('ColorColumn', '', 'lightGreen')
+call s:HL('CursorLine', '', 'chaosBlack', 'none')
+call s:HL('CursorColumn', '', 'chaosBlack')
+call s:HL('ColorColumn', '', 'tundora')
+
+call s:HL('MatchParen', 'chaosBlack', 'tundora', 'bold')
+
+call s:HL('Visual', '', 'chaosBlack')
+
+call s:HL('Search', 'chaosBlack', 'coniferBlossom', 'bold')
+call s:HL('IncSearch', 'chaosBlack', 'white', 'bold')
+
+" call s:HL('StatusLine', 'tundora', 'chaosBlack', 'bold')
+" call s:HL('StatusLineNC', 'carrot', 'carrot', 'bold')
+
+" call s:HL('Title', 'mountainMeadow')
+" call s:HL('Directory', 'mountainMeadow', '', 'bold')
+
+call s:HL('ErrorMsg', 'carrot', s:bg, 'bold')
+call s:HL('ModeMsg', 'tundora', '', 'bold')
+call s:HL('Question', 'tundora', '', 'bold')
+call s:HL('WarningMsg', 'coniferBlossom', '', 'bold')
+
+" }}}
+" Left column {{{
+
+call s:HL('LineNr', 'tundora', s:bg)
+call s:HL('CursorLineNr', 'mountainMeadow', s:bg)
+call s:HL('SignColumn', '', s:bg)
+
+" Versioning
+call s:HL('DiffAdd', 'turquoisePanic', s:bg)
+call s:HL('DiffDelete', 'carrot', s:bg)
+call s:HL('DiffChange', 'coniferBlossom', s:bg)
+call s:HL('DiffText', 'mountainMeadow', s:bg)
+
+" }}}
+" Cursor {{{
 
 " TODO
+" Nothing seems to change
+call s:HL('Cursor', 'genoa', 'genoa')
 
-" Syntax highlighting
+" }}}
+" Syntax highlighting {{{
 
-call s:HL('Comment', 'lightGrey', s:bg)
-call s:HL('SpecialComment', 'red', s:bg, 'bold')
-call s:HL('Todo', 'red', s:bg, 'bold')
+call s:HL('Comment', 'tundora')
+" TODO
+" Fix background when highlighted
+call s:HL('SpecialComment', 'carrot', s:bg, 'bold')
+call s:HL('Todo', 'carrot', s:bg, 'bold')
 
-call s:HL('Special', s:fg, s:bg, 'bold')
+call s:HL('Special', s:fg, '', 'bold')
 
-call s:HL('String', 'darkGreen')
+call s:HL('String', 'genoa')
 
-call s:HL('Conditional', 'yellowGreen', '', 'bold')
-call s:HL('Keyword', 'yellowGreen', '', 'bold')
-call s:HL('Label', 'yellowGreen', '', 'bold')
-call s:HL('Operator', 'yellowGreen', '', 'bold')
-call s:HL('Repeat', 'yellowGreen', '', 'bold')
-call s:HL('Statement', 'yellowGreen', '', 'bold')
+call s:HL('Conditional', 'alienParasite', '', 'bold')
+call s:HL('Keyword', 'alienParasite', '', 'bold')
+call s:HL('Label', 'alienParasite', '', 'bold')
+call s:HL('Operator', 'alienParasite', '', 'bold')
+call s:HL('Repeat', 'alienParasite', '', 'bold')
+call s:HL('Statement', 'alienParasite', '', 'bold')
 
-call s:HL('Function', 'green', '', 'bold')
-call s:HL('Identifier', 'green', '', 'bold')
+call s:HL('Function', 'mountainMeadow', '', 'bold')
+call s:HL('Identifier', 'mountainMeadow', '', 'bold')
 
-call s:HL('Boolean',   'lightBlue', '', 'bold')
-call s:HL('Character', 'lightBlue', '', 'bold')
-call s:HL('Constant',  'lightBlue', '', 'bold')
-call s:HL('Float',  'lightBlue', '', 'bold')
-call s:HL('Number', 'lightBlue', '', 'bold')
+call s:HL('Boolean',   'turquoisePanic', '', 'bold')
+call s:HL('Character', 'turquoisePanic', '', 'bold')
+call s:HL('Constant',  'turquoisePanic', '', 'bold')
+call s:HL('Float',  'turquoisePanic', '', 'bold')
+call s:HL('Number', 'turquoisePanic', '', 'bold')
 
+call s:HL('PreProc',   'coniferBlossom', '', 'none')
+call s:HL('Macro',     'coniferBlossom', '', 'none')
+call s:HL('Define',    'coniferBlossom', '', 'none')
+call s:HL('PreCondit', 'coniferBlossom', '', 'bold')
+
+" }}}
 
 " Completion menu
 
-call s:HL('pMenu', s:fg, 'grey') 
-call s:HL('pMenuSel', 'grey', s:bg, 'bold')
-call s:HL('pMenuSbar', '', 'grey')
-call s:HL('pMenuThumb', 'lightGreen')
+call s:HL('pMenu', s:fg, 'chaosBlack') 
+call s:HL('pMenuSel', 'chaosBlack', s:bg, 'bold')
+call s:HL('pMenuSbar', '', 'chaosBlack')
+" call s:HL('pMenuThumb', '')
 
 " }}}
