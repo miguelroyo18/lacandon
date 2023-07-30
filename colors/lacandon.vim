@@ -28,8 +28,11 @@ let s:lacandon.mountainMeadow = ['#1dad5e', 72]
 let s:lacandon.turquoisePanic = ['#29cbbe', 80]
 let s:lacandon.genoa = ['#166b60', 30]
 
+" Purple
+let s:lacandon.heraBlue= ['#8b7aea', 141]
+
 " Yellow
-let s:lacandon.coniferBlossom = ['#ffdb47', 221]
+let s:lacandon.coniferBlossom = ['#ffe666', 228]
 
 " Orange
 let s:lacandon.carrot = ['#fc7445', 209]
@@ -89,11 +92,11 @@ call s:HL('Visual', '', 'chaosBlack')
 call s:HL('Search', 'chaosBlack', 'coniferBlossom', 'bold')
 call s:HL('IncSearch', 'chaosBlack', 'white', 'bold')
 
-" call s:HL('StatusLine', 'tundora', 'chaosBlack', 'bold')
-" call s:HL('StatusLineNC', 'carrot', 'carrot', 'bold')
+call s:HL('StatusLine', 'tundora', 'chaosBlack', 'bold')
+call s:HL('StatusLineNC', 'tundora', 'chaosBlack', 'bold')
 
-" call s:HL('Title', 'mountainMeadow')
-" call s:HL('Directory', 'mountainMeadow', '', 'bold')
+call s:HL('Title', 'alienParasite')
+call s:HL('Directory', 'tundora', '', 'bold')
 
 call s:HL('ErrorMsg', 'carrot', s:bg, 'bold')
 call s:HL('ModeMsg', 'tundora', '', 'bold')
@@ -107,7 +110,7 @@ call s:HL('LineNr', 'tundora', s:bg)
 call s:HL('CursorLineNr', 'mountainMeadow', s:bg)
 call s:HL('SignColumn', '', s:bg)
 
-" Versioning
+" Diffs
 call s:HL('DiffAdd', 'turquoisePanic', s:bg)
 call s:HL('DiffDelete', 'carrot', s:bg)
 call s:HL('DiffChange', 'coniferBlossom', s:bg)
@@ -118,7 +121,7 @@ call s:HL('DiffText', 'mountainMeadow', s:bg)
 
 " TODO
 " Nothing seems to change
-call s:HL('Cursor', 'genoa', 'genoa')
+" call s:HL('Cursor', 'genoa', 'genoa')
 
 " }}}
 " Syntax highlighting {{{
@@ -143,24 +146,59 @@ call s:HL('Statement', 'alienParasite', '', 'bold')
 call s:HL('Function', 'mountainMeadow', '', 'bold')
 call s:HL('Identifier', 'mountainMeadow', '', 'bold')
 
-call s:HL('Boolean',   'turquoisePanic', '', 'bold')
+call s:HL('Boolean', 'turquoisePanic', '', 'bold')
 call s:HL('Character', 'turquoisePanic', '', 'bold')
-call s:HL('Constant',  'turquoisePanic', '', 'bold')
-call s:HL('Float',  'turquoisePanic', '', 'bold')
+call s:HL('Constant', 'turquoisePanic', '', 'bold')
+call s:HL('Float', 'turquoisePanic', '', 'bold')
 call s:HL('Number', 'turquoisePanic', '', 'bold')
 
-call s:HL('PreProc',   'coniferBlossom', '', 'none')
-call s:HL('Macro',     'coniferBlossom', '', 'none')
-call s:HL('Define',    'coniferBlossom', '', 'none')
+call s:HL('PreProc', 'coniferBlossom', '', 'none')
+call s:HL('Macro', 'coniferBlossom', '', 'none')
+call s:HL('Define', 'coniferBlossom', '', 'none')
 call s:HL('PreCondit', 'coniferBlossom', '', 'bold')
+
+call s:HL('Exception', 'heraBlue', '', 'bold')
 
 " }}}
 
-" Completion menu
+" Completion menu {{{
 
 call s:HL('pMenu', s:fg, 'chaosBlack') 
-call s:HL('pMenuSel', 'chaosBlack', s:bg, 'bold')
-call s:HL('pMenuSbar', '', 'chaosBlack')
-" call s:HL('pMenuThumb', '')
+call s:HL('pMenuSel', '', 'tundora', 'bold')
+call s:HL('pMenuSbar', '', 'tundora')
+call s:HL('pMenuThumb', '', 'mountainMeadow')
+
+" }}}
+" Filetypes {{{
+
+" LaTeX
+
+call s:HL('texStatement', 'mountainMeadow', '', 'none')
+call s:HL('texMathZoneX', s:fg, '', 'none')
+call s:HL('texMathZoneA', s:fg, '', 'none')
+call s:HL('texMathZoneB', s:fg, '', 'none')
+call s:HL('texMathZoneC', s:fg, '', 'none')
+call s:HL('texMathZoneD', s:fg, '', 'none')
+call s:HL('texMathZoneE', s:fg, '', 'none')
+call s:HL('texMathZoneV', s:fg, '', 'none')
+call s:HL('texMathZoneX', s:fg, '', 'none')
+call s:HL('texMath', s:fg, '', 'none')
+call s:HL('texMathMatcher', s:fg, '', 'none')
+call s:HL('texRefLabel', s:fg, '', 'none')
+call s:HL('texRefZone', 'alienParasite', '', 'none')
+call s:HL('texComment', 'tundora', '', 'none')
+call s:HL('texDelimiter', 'genoa', '', 'none')
+call s:HL('texZone', s:fg, '', 'none')
+
+augroup lacandon_tex
+    au!
+    au BufRead,BufNewFile *.tex syn region texMathZoneV start="\\(" end="\\)\|%stopzone\>" keepend contains=@texMathZoneGroup
+    au BufRead,BufNewFile *.tex syn region texMathZoneX start="\$" skip="\\\\\|\\\$" end="\$\|%stopzone\>" keepend contains=@texMathZoneGroup
+augroup END
+
+" }}}
+
+call s:HL('CocListSearch', 'mountainMeadow')
+call s:HL('CocSearch', 'mountainMeadow')
 
 " }}}
