@@ -21,12 +21,6 @@ let s:lacandon = {}
 let s:lacandon.pureWhite = ['#ffffff', 15]
 let s:lacandon.pureBlack = ['#000000', 16]
 
-let s:lacandon.white = ['#c6ff8a', 230]
-let s:lacandon.black = ['#040b10', 0]
-
-let s:fg = 'pureWhite'
-let s:bg = 'pureBlack'
-
 " Green
 let s:lacandon.alienParasite = ['#67fe37', 119]
 let s:lacandon.mountainMeadow = ['#1dad5e', 72]
@@ -50,8 +44,12 @@ let s:lacandon.tundora = ['#404040', 237]
 " Black
 let s:lacandon.chaosBlack = ['#101010', 233]
 
+let s:fg = 'pureWhite'
+let s:bg = 'pureBlack'
+
 " }}}
 " Highlighting function {{{
+
 function! s:HL(group, fg, ...)
     " Arguments: group, guifg, guibg, gui, guisp
     " guisp is used for undercurl and strikethrough
@@ -79,6 +77,7 @@ function! s:HL(group, fg, ...)
 
     execute hiFunction
 endfunction
+
 " }}}
 " Colour scheme {{{
 
@@ -98,7 +97,7 @@ call s:HL('Visual', '', 'chaosBlack')
 call s:HL('VisualNOS', '', 'chaosBlack')
 
 call s:HL('Search', 'chaosBlack', 'coniferBlossom', 'bold')
-call s:HL('IncSearch', 'chaosBlack', 'white', 'bold')
+call s:HL('IncSearch', 'chaosBlack', 'pureWhite', 'bold')
 
 call s:HL('StatusLine', 'tundora', 'chaosBlack', 'bold')
 call s:HL('StatusLineNC', 'tundora', 'chaosBlack', 'bold')
@@ -175,10 +174,6 @@ call s:HL('pMenu', s:fg, 'chaosBlack')
 call s:HL('pMenuSel', '', 'tundora', 'bold')
 call s:HL('pMenuSbar', '', 'tundora')
 call s:HL('pMenuThumb', '', 'mountainMeadow')
-
-" }}}
-" Filetypes {{{
-
 
 " }}}
 " Plugins {{{
