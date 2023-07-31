@@ -1,3 +1,9 @@
+" File: lacandon.vim
+" Author: Miguel Royo
+" Description: A Vim colour scheme based on the colours of the Lacandon Jungle.
+
+" Preamble {{{
+
 set background=dark
 
 highlight clear
@@ -7,6 +13,7 @@ endif
 
 let g:colors_name = "lacandon"
 
+" }}}
 " Colour palette {{{
 
 let s:lacandon = {}
@@ -44,7 +51,7 @@ let s:lacandon.tundora = ['#404040', 237]
 let s:lacandon.chaosBlack = ['#101010', 233]
 
 " }}}
-" Highlighting Function {{{
+" Highlighting function {{{
 function! s:HL(group, fg, ...)
     " Arguments: group, guifg, guibg, gui, guisp
     " guisp is used for undercurl and strikethrough
@@ -88,6 +95,7 @@ call s:HL('ColorColumn', '', 'tundora')
 call s:HL('MatchParen', 'chaosBlack', 'tundora', 'bold')
 
 call s:HL('Visual', '', 'chaosBlack')
+call s:HL('VisualNOS', '', 'chaosBlack')
 
 call s:HL('Search', 'chaosBlack', 'coniferBlossom', 'bold')
 call s:HL('IncSearch', 'chaosBlack', 'white', 'bold')
@@ -103,6 +111,8 @@ call s:HL('ModeMsg', 'tundora', '', 'bold')
 call s:HL('Question', 'tundora', '', 'bold')
 call s:HL('WarningMsg', 'coniferBlossom', '', 'bold')
 
+call s:HL('NonText', 'mountainMeadow', s:bg)
+
 " }}}
 " Left column {{{
 
@@ -117,50 +127,48 @@ call s:HL('DiffChange', 'coniferBlossom', s:bg)
 call s:HL('DiffText', 'mountainMeadow', s:bg)
 
 " }}}
-" Cursor {{{
-
-" TODO
-" Nothing seems to change
-" call s:HL('Cursor', 'genoa', 'genoa')
-
-" }}}
 " Syntax highlighting {{{
 
 call s:HL('Comment', 'tundora')
-" TODO
-" Fix background when highlighted
-call s:HL('SpecialComment', 'carrot', s:bg, 'bold')
-call s:HL('Todo', 'carrot', s:bg, 'bold')
 
-call s:HL('Special', s:fg, '', 'bold')
-
-call s:HL('String', 'genoa')
-
-call s:HL('Conditional', 'alienParasite', '', 'bold')
-call s:HL('Keyword', 'alienParasite', '', 'bold')
-call s:HL('Label', 'alienParasite', '', 'bold')
-call s:HL('Operator', 'alienParasite', '', 'bold')
-call s:HL('Repeat', 'alienParasite', '', 'bold')
 call s:HL('Statement', 'alienParasite', '', 'bold')
-
-call s:HL('Function', 'mountainMeadow', '', 'bold')
-call s:HL('Identifier', 'mountainMeadow', '', 'bold')
-
-call s:HL('Boolean', 'turquoisePanic', '', 'bold')
-call s:HL('Character', 'turquoisePanic', '', 'bold')
-call s:HL('Constant', 'turquoisePanic', '', 'bold')
-call s:HL('Float', 'turquoisePanic', '', 'bold')
-call s:HL('Number', 'turquoisePanic', '', 'bold')
-
-call s:HL('PreProc', 'coniferBlossom', '', 'none')
-call s:HL('Macro', 'coniferBlossom', '', 'none')
-call s:HL('Define', 'coniferBlossom', '', 'none')
-call s:HL('PreCondit', 'coniferBlossom', '', 'bold')
-
+call s:HL('Conditional', 'heraBlue', '', 'bold')
+call s:HL('Repeat', 'heraBlue', '', 'bold')
+call s:HL('Label', 'heraBlue', '', 'bold')
+call s:HL('Operator', 'heraBlue', '', 'bold')
+call s:HL('Keyword', 'alienParasite', '', 'bold')
 call s:HL('Exception', 'heraBlue', '', 'bold')
 
-" }}}
+call s:HL('Constant', 'turquoisePanic', '', 'bold')
+call s:HL('String', 'genoa')
+call s:HL('Character', 'turquoisePanic', '', 'bold')
+call s:HL('Number', 'turquoisePanic', '', 'bold')
+call s:HL('Boolean', 'turquoisePanic', '', 'bold')
+call s:HL('Float', 'turquoisePanic', '', 'bold')
 
+" TODO
+" Fix background when identifier highlighted
+call s:HL('Identifier', 'mountainMeadow', '', 'bold')
+call s:HL('Function', 'mountainMeadow', '', 'bold')
+
+call s:HL('PreProc', 'coniferBlossom', '', 'none')
+call s:HL('Define', 'coniferBlossom', '', 'none')
+call s:HL('Macro', 'coniferBlossom', '', 'none')
+call s:HL('PreCondit', 'coniferBlossom', '', 'bold')
+
+call s:HL('Type', 'alienParasite', '', 'bold')
+call s:HL('StorageClass', 'alienParasite', '', 'bold')
+call s:HL('Structure', 'alienParasite', '', 'bold')
+call s:HL('Typedef', 'alienParasite', '', 'bold')
+
+call s:HL('Special', s:fg, '', 'bold')
+call s:HL('SpecialComment', 'carrot', s:bg, 'bold')
+call s:HL('Debug', 'coniferBlossom', '', 'bold')
+call s:HL('Underlined', s:fg, '', 'underline')
+call s:HL('Error', 'carrot', s:bg, 'bold')
+call s:HL('Todo', 'carrot', s:bg, 'bold')
+
+" }}}
 " Completion menu {{{
 
 call s:HL('pMenu', s:fg, 'chaosBlack') 
@@ -171,7 +179,18 @@ call s:HL('pMenuThumb', '', 'mountainMeadow')
 " }}}
 " Filetypes {{{
 
-" LaTeX
+
+" }}}
+" Plugins {{{
+
+" Coc
+call s:HL('CocListSearch', 'mountainMeadow')
+call s:HL('CocSearch', 'mountainMeadow')
+
+" }}}
+" Filetype-specific {{{
+
+" LaTeX {{{
 
 call s:HL('texStatement', 'mountainMeadow', '', 'none')
 call s:HL('texMathZoneX', s:fg, '', 'none')
@@ -197,8 +216,34 @@ augroup lacandon_tex
 augroup END
 
 " }}}
+" Markdown {{{
 
-call s:HL('CocListSearch', 'mountainMeadow')
-call s:HL('CocSearch', 'mountainMeadow')
+call s:HL('markdownHeadingRule', 'tundora', '', 'bold')
+call s:HL('markdownHeadingDelimiter', 'tundora', '', 'bold')
+call s:HL('markdownOrderedListMarker', 'tundora', '', 'bold')
+call s:HL('markdownListMarker', 'tundora', '', 'bold')
+call s:HL('markdownItalic', 'coniferBlossom', '', 'bold')
+call s:HL('markdownBold', 'coniferBlossom', '', 'bold')
+call s:HL('markdownH1', 'alienParasite', '', 'bold')
+call s:HL('markdownH2', 'alienParasite', '', 'bold')
+call s:HL('markdownH3', 'alienParasite', '', 'none')
+call s:HL('markdownH4', 'alienParasite', '', 'none')
+call s:HL('markdownH5', 'alienParasite', '', 'none')
+call s:HL('markdownH6', 'alienParasite', '', 'none')
+call s:HL('markdownIdDeclaration', 'heraBlue')
+call s:HL('markdownAutomaticLink', 'heraBlue', '', 'bold')
+call s:HL('markdownUrl', 'heraBlue', '', 'bold')
+call s:HL('markdownCodeDelimiter', 'mountainMeadow', '', 'bold')
+call s:HL('markdownCode', 'mountainMeadow', '', 'none')
+
+" }}}
+" Vim {{{
+
+" TODO
+" Do not fancy 'Type' colour in vim syntax files
+
+" }}}
+
+" }}}
 
 " }}}
